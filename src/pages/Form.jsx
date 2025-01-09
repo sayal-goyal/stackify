@@ -4,13 +4,14 @@ import Address from "../components/Address";
 import BackgroundSidebar from "../assets/images/bg-sidebar-desktop.svg";
 import BackgroundSidebarMobile from "../assets/images/bg-sidebar-mobile.svg";
 import Step from "../components/Step";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Form = () => {
   //------------------------------STATES------------------------------
   const urlParams = new URLSearchParams(window.location.search);
   const redirectUrl = urlParams.get('returnUrl');
   const decodedRedirectUrl = decodeURIComponent(redirectUrl);
+  const navigate = useNavigate();
   const [stepNumber, setStepNumber] = useState(() => 1);
   const [goBackVisible, setGoBackVisible] = useState("invisible");
   const [steps, setSteps] = useState([
@@ -96,6 +97,26 @@ const Form = () => {
     });
   };
 
+
+
+  const handleSubmit = async () => {
+    const elementryData = [
+      {
+        "user_id": "user123",
+        "event_name": "onboarding_complete",
+        "properties": { ...info, ...address },
+        "context": {
+          "group_id": "account_456"
+        },
+        "timestamp": new Date()
+      }
+    ]
+    const data = await sdk.sendTelemetry(telemetryData);
+    navigate(decodedRedirectUrl)
+  }
+
+
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-white">
       <div className="bg-slate-100 rounded-xl md:p-3 md:flex justify-center">
@@ -149,9 +170,9 @@ const Form = () => {
               Go back
             </div>
             {stepNumber === 2 ? (
-              <Link to={decodedRedirectUrl} className="font-medium bg-[#473dff] select-none text-white py-3 px-5 rounded-lg cursor-pointer transition duration-100 hover:opacity-90">
+              <button onClick={handleSubmit} className="font-medium bg-[#473dff] select-none text-white py-3 px-5 rounded-lg cursor-pointer transition duration-100 hover:opacity-90">
                 Confirm
-              </Link>
+              </button>
             ) : (
               <div
                 onClick={nextStep}
