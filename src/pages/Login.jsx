@@ -19,7 +19,7 @@ const Login = () => {
 
         if (user) {
             setError('');
-            await sdk.triggerWorkflowAndRedirect('pGkT5cmtlp', email, password);
+            await sdk.triggerWorkflowAndRedirect('5a8SGU6FKq', email, password);
             navigate('/dashboard');
         } else setError('Invalid email or password!');
     };

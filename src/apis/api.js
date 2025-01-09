@@ -18,8 +18,8 @@ const getThriveStackManagementToken = async () => {
 }
 
 export const sdk = ThriveStackSDK.getInstance(
-"Y2aiRtzS3",  // ThriveStack productId
-"9lJI6t6ue",  // ThriveStack environmentId
-"https://api.dev.app.thrivestack.ai/v1/GetTSDefaultManagementToken", // URL of the enpoint created in section: 'Implement ThriveStack Management Token Retrieval'
-true // (Optional) TEST MODE: Enable this in development environments when using the 'Test' feature to verify the integration
+    "q9OFZHQUy",  // ThriveStack productId
+    "EL4uwcjtx",  // ThriveStack environmentId
+    "https://api.app.thrivestack.ai/v1/GetTSDefaultManagementToken", // URL of the enpoint created in section: 'Implement ThriveStack Management Token Retrieval'
+    true // (Optional) TEST MODE: Enable this in development environments when using the 'Test' feature to verify the integration
 );

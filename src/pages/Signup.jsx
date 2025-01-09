@@ -16,7 +16,7 @@ const Signup = () => {
             setError('Passwords do not match!');
             return;
         }
-        await sdk.triggerWorkflowAndRedirect('r5wFvTRUmz', email, password);
+        await sdk.triggerWorkflowAndRedirect('ZgQSaC6UmR', email, password);
         navigate('/form');
         setError('');
     };
