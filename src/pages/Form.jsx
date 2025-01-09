@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const Form = () => {
   //------------------------------STATES------------------------------
   const urlParams = new URLSearchParams(window.location.search);
-  const redirectUrl = urlParams.get('redirectUrl');
+  const redirectUrl = urlParams.get('returnUrl');
   const decodedRedirectUrl = decodeURIComponent(redirectUrl);
   const [stepNumber, setStepNumber] = useState(() => 1);
   const [goBackVisible, setGoBackVisible] = useState("invisible");
