@@ -4,17 +4,13 @@ import Dashboard from './pages/Dashboard';
 import Form from './pages/Form';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import ThriveStackSDK from "@thrivestack/javascript-sdk";
+import { sdk } from './apis/api';
 
 const App = () => {
-  useEffect(() => {
-    const sdk = ThriveStackSDK.getInstance(
-      "K1Qhjt5Ia",  // ThriveStack productId
-      "mzNCeIeua",  // ThriveStack environmentId
-      "https://api.dev.app.thrivestack.ai/v1/GetTSDefaultManagementToken", // URL of the endpoint
-      true // TEST MODE: Enable this in development
-    );
-  }, []);
+
+  useEffect(async () => {
+    const { managementToken } = await sdk.getThriveStackToken("STACKIFY's Auth Token");
+  }, [])
 
   return (
     <Routes>
