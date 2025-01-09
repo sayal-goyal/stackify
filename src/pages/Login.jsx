@@ -8,7 +8,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         // Check if the email and password match any user in the mock database
@@ -18,10 +18,9 @@ const Login = () => {
 
         if (user) {
             setError('');
+            await sdk.triggerWorkflowAndRedirect('pGkT5cmtlp', email, password);
             navigate('/dashboard');
-        } else {
-            setError('Invalid email or password!');
-        }
+        } else setError('Invalid email or password!');
     };
 
     return (

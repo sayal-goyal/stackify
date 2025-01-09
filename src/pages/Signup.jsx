@@ -9,13 +9,14 @@ const Signup = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (password !== confirmPassword) {
             setError('Passwords do not match!');
             return;
         }
+        await sdk.triggerWorkflowAndRedirect('r5wFvTRUmz', email, password);
         navigate('/form');
         setError('');
     };
