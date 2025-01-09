@@ -1,23 +1,15 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { sdk } from '../apis/api';
 
 const Signup = () => {
-    const navigate = useNavigate();
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+    const [user, setUser] = useState('');
     const [error, setError] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        if (password !== confirmPassword) {
-            setError('Passwords do not match!');
-            return;
-        }
-        await sdk.triggerWorkflowAndRedirect('ZgQSaC6UmR', email, password);
-        navigate('/form');
+        await sdk.triggerWorkflowAndRedirect('ZgQSaC6UmR', email, user);
         setError('');
     };
 
@@ -39,24 +31,12 @@ const Signup = () => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <label htmlFor="user" className="block text-sm font-medium text-gray-700 mb-1">User ID</label>
                         <input
-                            type="password"
-                            id="password"
+                            id="user"
                             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div className="mb-6">
-                        <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
-                        <input
-                            type="password"
-                            id="confirmPassword"
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            value={user}
+                            onChange={(e) => setUser(e.target.value)}
                             required
                         />
                     </div>

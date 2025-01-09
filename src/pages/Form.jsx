@@ -89,7 +89,7 @@ const Form = () => {
       return { ...prevInfo, [event.target.name]: event.target.value };
     });
   };
-
+  console.log(redirectUrl)
   const changeAddress = (event) => {
     setAddress((prevAddress) => {
       return { ...prevAddress, [event.target.name]: event.target.value };
