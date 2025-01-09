@@ -111,7 +111,8 @@ const Form = () => {
         "timestamp": new Date()
       }
     ]
-    const data = await sdk.sendTelemetry(telemetryData);
+    const data = await sdk.sendTelemetry(elementryData);
+    console.log(data)
     navigate(decodedRedirectUrl)
   }
 
