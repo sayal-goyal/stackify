@@ -30,20 +30,18 @@ const YourInfo = ({ info, onChangeInfo, isEmpty }) => {
         title="Personal Info"
         desc="Please provide your name, email address, and phone number."
       />
-      <form>
-        <div className="flex flex-col space-y-6 text-[14px]">
-          {formFields.map((formField) => (
-            <FormField
-              onChange={onChangeInfo}
-              key={formField.id}
-              name={formField.name}
-              label={formField.label}
-              placeholder={formField.placeholder}
-              value={info[formField.name]}
-              isEmpty={isEmpty}
-            />
-          ))}
-        </div>
+      <form className="flex flex-col space-y-6 text-[14px]">
+        {formFields.map((formField) => (
+          <FormField
+            onChange={onChangeInfo}
+            key={formField.id}
+            name={formField.name}
+            label={formField.label}
+            placeholder={formField.placeholder}
+            value={info[formField.name]}
+            isEmpty={isEmpty}
+          />
+        ))}
       </form>
     </div>
   );

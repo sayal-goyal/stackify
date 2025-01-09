@@ -94,8 +94,8 @@ const Form = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50">
-      <div className="bg-[#d6d9e6] md:bg-white rounded-xl md:p-3 md:flex justify-center">
+    <div className="flex items-center justify-center min-h-screen bg-white">
+      <div className="bg-slate-100 rounded-xl md:p-3 md:flex justify-center">
         <div className="relative">
           <img
             className="hidden md:block"
@@ -119,7 +119,7 @@ const Form = () => {
             ))}
           </div>
         </div>
-        <div className="flex flex-col justify-between absolute top-40 w-[450px] md:static mb-40 rounded-2xl mx-8 px-16 pt-10 pb-16 bg-white md:px-0 md:py-5 md:mx-28 md:w-100 md:my-2">
+        <div className="flex flex-col justify-between absolute top-40 w-[450px] md:static mb-40 rounded-2xl mx-8 px-16 pt-10 pb-16 md:px-0 md:py-5 md:mx-28 md:w-100 md:my-2">
           <div>
             {(stepNumber === 1 && (
               <YourInfo
@@ -138,7 +138,7 @@ const Form = () => {
                 />
               ))}
           </div>
-          <div className="flex justify-between fixed px-16 bottom-0 left-0 w-full bg-white p-5 md:static md:p-0 md:static items-center w-[700px]]">
+          <div className="flex justify-between fixed px-16 bottom-0 left-0 w-full p-5 md:static md:p-0 items-center w-[700px]]">
             <div
               onClick={prevStep}
               className={`font-medium text-[#9699ab] select-none cursor-pointer transition duration-100 hover:text-[#02295a] ${goBackVisible}`}

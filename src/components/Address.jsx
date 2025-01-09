@@ -30,20 +30,18 @@ const Address = ({ address, onChangeAddress, isEmpty }) => {
         title="Address Info"
         desc="Please provide your Address, country, state, city and pincode."
       />
-      <form>
-        <div className="flex flex-col space-y-6 text-[14px]">
-          {formFields.map((formField) => (
-            <FormField
-              onChange={onChangeAddress}
-              key={formField.id}
-              name={formField.name}
-              label={formField.label}
-              placeholder={formField.placeholder}
-              value={address[formField.name]}
-              isEmpty={isEmpty}
-            />
-          ))}
-        </div>
+      <form className="flex flex-col space-y-6 text-[14px]">
+        {formFields.map((formField) => (
+          <FormField
+            onChange={onChangeAddress}
+            key={formField.id}
+            name={formField.name}
+            label={formField.label}
+            placeholder={formField.placeholder}
+            value={address[formField.name]}
+            isEmpty={isEmpty}
+          />
+        ))}
       </form>
     </div>
   );
