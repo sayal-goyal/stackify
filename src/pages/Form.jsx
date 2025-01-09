@@ -114,7 +114,8 @@ const Form = () => {
     ]
     const data = await sdk.sendTelemetry(elementryData);
     console.log(data)
-    navigate(decodedRedirectUrl, { replace: true });
+    const absoluteUrl = new URL(decodedRedirectUrl, window.location.origin).toString();
+    navigate(absoluteUrl, { replace: true });
   }
 
 
