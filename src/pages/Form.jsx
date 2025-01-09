@@ -8,6 +8,9 @@ import { Link } from "react-router-dom";
 
 const Form = () => {
   //------------------------------STATES------------------------------
+  const urlParams = new URLSearchParams(window.location.search);
+  const redirectUrl = urlParams.get('redirectUrl');
+  const decodedRedirectUrl = decodeURIComponent(redirectUrl);
   const [stepNumber, setStepNumber] = useState(() => 1);
   const [goBackVisible, setGoBackVisible] = useState("invisible");
   const [steps, setSteps] = useState([
@@ -44,7 +47,7 @@ const Form = () => {
     } else {
       setGoBackVisible("invisible");
     }
-  }, [ stepNumber, address, info,]);
+  }, [stepNumber, address, info,]);
 
   //------------------------------FUNCTIONS------------------------------
   const nextStep = () => {
@@ -146,7 +149,7 @@ const Form = () => {
               Go back
             </div>
             {stepNumber === 2 ? (
-              <Link to='/dashboard' className="font-medium bg-[#473dff] select-none text-white py-3 px-5 rounded-lg cursor-pointer transition duration-100 hover:opacity-90">
+              <Link to={decodedRedirectUrl} className="font-medium bg-[#473dff] select-none text-white py-3 px-5 rounded-lg cursor-pointer transition duration-100 hover:opacity-90">
                 Confirm
               </Link>
             ) : (
