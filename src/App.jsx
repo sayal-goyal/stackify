@@ -5,6 +5,8 @@ import Form from './pages/Form';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import { sdk } from './apis/api';
+import SlackAuth from './pages/user/auth/SlackAuth';
+import Slack from './pages/user/Slack';
 
 const App = () => {
 
@@ -19,6 +21,8 @@ const App = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/form" element={<Form />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/user/slack" element={<Slack />} />
+      <Route path="/user/auth/slack" element={<SlackAuth />} />
     </Routes>
   );
 };
