@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Dashboard from './pages/Dashboard';
 import Form from './pages/Form';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import { sdk } from './apis/api';
+import Dashboard from './pages/Dashboard';
 import SlackAuth from './pages/user/auth/SlackAuth';
 import Slack from './pages/user/Slack';
 

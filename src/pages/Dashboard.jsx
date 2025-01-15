@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-const clientId = process.env.REACT_APP_CLIENT_ID;
+const clientId = import.meta.env.VITE_CLIENT_ID;
 
 const Dashboard = () => {
   return (
