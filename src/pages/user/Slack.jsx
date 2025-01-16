@@ -6,13 +6,7 @@ const Slack = () => {
     useEffect(() => {
         const fetchToken = async () => {
             try {
-                const username = getCookie('username');
-
-                if (!username) {
-                    console.error("Username not found");
-                    return;
-                }
-                const response = await fetch(baseURL + '/user/slack/getChannels?username=' + username, {
+                const response = await fetch(baseURL + '/user/slack/getChannels?username=' + 'username', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

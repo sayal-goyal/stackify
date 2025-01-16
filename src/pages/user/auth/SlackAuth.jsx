@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
-const baseURL = import.meta.env.VITE_BASE_URL;
+const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 
 const SlackAuth = () => {
@@ -11,18 +11,12 @@ const SlackAuth = () => {
   useEffect(() => {
     const fetchToken = async () => {
       try {
-        const username = getCookie('username');
-
-        if (!username) {
-          console.error("Username not found");
-          return;
-        }
         const response = await fetch(baseURL + '/user/auth/slack', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ username: username, code: queryParams.get('code') })
+          body: JSON.stringify({ username: 'username', code: queryParams.get('code') })
         });
 
         const data = await response.json();
