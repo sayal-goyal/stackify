@@ -1,35 +1,32 @@
 import React, { useEffect } from 'react'
-import { useLocation } from 'react-router-dom';
-const clientId = import.meta.env.VITE_CLIENT_ID;
-const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
+import { useLocation, useNavigate } from 'react-router-dom';
+const baseURL = import.meta.env.VITE_BASE_URL;
 
 
 const SlackAuth = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
 
   useEffect(() => {
     const fetchToken = async () => {
       try {
-        const params = new URLSearchParams({
-          'client_id': clientId,
-          'client_secret': clientSecret,
-          'code': queryParams.get('code'),
-          'redirect_uri': 'https://stackify.vercel.app/user/slack',
-          // 'grant_type'=authorization_code,
-        })
+        const username = localStorage.getItem("username");
 
-        const response = await fetch('https://slack.com/api/oauth.v2.access', {
+        if (!username) {
+          console.error("Username is missing in localStorage");
+          return;
+        }
+        const response = await fetch(baseURL + '/user/auth/slack', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': `Bearer ${process.env.REACT_APP_SLACK_BOT_TOKEN}`
+            'Content-Type': 'application/json',
           },
-          body: params.toString()
+          body: JSON.stringify({ username: username, code: queryParams.get('code') })
         });
 
         const data = await response.json();
-        if (response.ok) console.log('Token response:', data);
+        if (response.ok) navigate('/user/slack');
         else console.error('Error response:', data);
       } catch (error) {
         console.error('Fetch error:', error);
@@ -40,8 +37,10 @@ const SlackAuth = () => {
   }, [])
 
   return (
-    <div>Slack Loading</div>
+    <div className='flex min-h-screen justify-center items-center text-center text-2xl text-slate-500'>
+      Processing Request......
+    </div>
   )
 }
 
-export default SlackAuth
+export default SlackAuth;
