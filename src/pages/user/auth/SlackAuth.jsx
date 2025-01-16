@@ -11,10 +11,10 @@ const SlackAuth = () => {
   useEffect(() => {
     const fetchToken = async () => {
       try {
-        const username = sessionStorage.getItem("username");
+        const username = getCookie('username');
 
         if (!username) {
-          console.error("Username is missing in sessionStorage");
+          console.error("Username not found");
           return;
         }
         const response = await fetch(baseURL + '/user/auth/slack', {

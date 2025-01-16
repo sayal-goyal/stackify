@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const clientId = import.meta.env.VITE_CLIENT_ID;
 
 const Dashboard = () => {
   const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+  }, [])
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -11,7 +16,8 @@ const Dashboard = () => {
       alert('Please enter your name!');
       return;
     }
-    sessionStorage.setItem('username', username);
+    // Set the cookie with a 1-day expiration
+    document.cookie = "username=" + encodeURIComponent(username) + "; expires=" + new Date(Date.now() + 86400 * 1000).toUTCString() + "; path=/";
 
     const redirectUri = `https://slack.com/oauth/v2/authorize?client_id=${clientId}&scope=chat:write,channels:read&redirect_uri=https://stackify.vercel.app/user/auth/slack`;
     window.location.href = redirectUri;
