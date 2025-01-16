@@ -11,7 +11,7 @@ const Dashboard = () => {
       alert('Please enter your name!');
       return;
     }
-    localStorage.setItem('username', username);
+    sessionStorage.setItem('username', username);
 
     const redirectUri = `https://slack.com/oauth/v2/authorize?client_id=${clientId}&scope=chat:write,channels:read&redirect_uri=https://stackify.vercel.app/user/auth/slack`;
     window.location.href = redirectUri;

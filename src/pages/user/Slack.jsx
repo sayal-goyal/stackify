@@ -6,10 +6,10 @@ const Slack = () => {
     useEffect(() => {
         const fetchToken = async () => {
             try {
-                const username = localStorage.getItem("username");
+                const username = sessionStorage.getItem("username");
 
                 if (!username) {
-                    console.error("Username is missing in localStorage");
+                    console.error("Username is missing in sessionStorage");
                     return;
                 }
                 const response = await fetch(baseURL + '/user/slack/getChannels?username=' + username, {
