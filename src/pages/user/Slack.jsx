@@ -50,7 +50,7 @@ const Slack = () => {
         <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center min-h-screen bg-gray-100 gap-5">
             <div className='flex flex-col gap-3'>
                 <h2 className='text-slate-700'>Select Channels</h2>
-                <Select options={channels.map(({ id, name }) => ({ label: name, value: id }))} value={selectedChannels} handleChange={handleChange} />
+                <Select options={channels?.map(({ id, name }) => ({ label: name, value: id }))} value={selectedChannels} handleChange={handleChange} />
 
                 <button type="submit" className="px-8 py-2 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-lg shadow-lg hover:brightness-105 w-96 mt-3">
                     Submit Channels
