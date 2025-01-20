@@ -11,7 +11,7 @@ const TeamsAuth = () => {
   useEffect(() => {
     const fetchToken = async () => {
       try {
-        const response = await fetch(baseURL + '/user/auth/slack', {
+        const response = await fetch(baseURL + '/user/auth/teams', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -20,7 +20,7 @@ const TeamsAuth = () => {
         });
 
         const data = await response.json();
-        if (response.ok) navigate('/user/slack');
+        if (response.ok) navigate('/user/teams');
         else console.error('Error response:', data);
       } catch (error) {
         console.error('Fetch error:', error);

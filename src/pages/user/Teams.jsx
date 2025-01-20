@@ -12,7 +12,7 @@ const Teams = () => {
     useEffect(() => {
         const fetchList = async () => {
             try {
-                const response = await fetch(baseURL + '/user/slack/getChannels?username=username', {
+                const response = await fetch(baseURL + '/user/teams/getChannels?username=username', {
                     method: 'GET', headers: { 'Content-Type': 'application/json' }
                 });
 
@@ -32,7 +32,7 @@ const Teams = () => {
         const selectedChannelIds = selectedOptions.map(option => option.value);
 
         try {
-            const response = await fetch(baseURL + '/user/slack/updateChannels?username=username', {
+            const response = await fetch(baseURL + '/user/teams/updateChannels?username=username', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ channelIds: selectedChannelIds }),
