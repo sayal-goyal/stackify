@@ -1,41 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-const clientId = import.meta.env.VITE_CLIENT_ID;
+const slackClientId = import.meta.env.VITE_SLACK_CLIENT_ID;
+const teamsClientId = import.meta.env.VITE_TEAMS_CLIENT_ID;
 const baseURL = import.meta.env.VITE_BASE_URL;
 
 const Dashboard = () => {
   const [username, setUsername] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (username.trim() === '') {
-      alert('Please enter your name!');
-      return;
-    }
+  const handleSlackSubmit = (e) => {
 
-    const redirectUri = `https://slack.com/oauth/v2/authorize?client_id=${clientId}&scope=channels:manage,channels:read,channels:write.invites,chat:write,groups:read,groups:write,groups:write.invites,im:read,incoming-webhook,users:read,channels:join&redirect_uri=${baseURL}/user/auth/slack`;
+    const redirectUri = `https://slack.com/oauth/v2/authorize?client_id=${slackClientId}&scope=channels:manage,channels:read,channels:write.invites,chat:write,groups:read,groups:write,groups:write.invites,im:read,incoming-webhook,users:read,channels:join&redirect_uri=${baseURL}/user/auth/slack`;
+    window.location.href = redirectUri;
+  };
+
+  const handleTeamsSubmit = (e) => {
+
+    const redirectUri = `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=${teamsClientId}&response_type=code&scope=ChannelMessage.Send+Team.ReadBasic.All+User.Read.All+Group.Read.All&response_mode=query&redirect_uri=${baseURL}/user/auth/slack`;
     window.location.href = redirectUri;
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex flex-col items-center justify-center min-h-screen bg-gray-100 gap-5"
-    >
-      <input
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="Enter your name"
-        className="px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 w-96"
-      />
-      <button
-        type="submit"
-        className="px-8 py-2 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-lg shadow-lg hover:brightness-105 w-96"
-      >
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 gap-5">
+      <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Enter your name" className="px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 w-96" />
+      <button onClick={handleSlackSubmit} className="px-8 py-2 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-lg shadow-lg hover:brightness-105 w-96">
         Integrate with Slack
       </button>
-    </form>
+      <button onClick={handleTeamsSubmit} className="px-8 py-2 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-lg shadow-lg hover:brightness-105 w-96">
+        Integrate with Teams
+      </button>
+    </div>
   );
 };
 
