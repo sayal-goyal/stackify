@@ -9,9 +9,26 @@ const Signup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await sdk.triggerWorkflowAndRedirect('ZgQSaC6UmR', email, user);
-        setError('');
-    };
+        // await sdk.triggerWorkflowAndRedirect('ZgQSaC6UmR', email, user);
+        // setError('');
+        // Example for triggering the signup workflow
+        if (window.thriveStackInstance) {
+            // Call triggerWorkflowAndRedirect method for signup workflow
+            try {
+                window.thriveStackInstance.triggerWorkflowAndRedirect({
+                    workflowId: 'Bl0SgsMUJB',
+                    emailId: email, // Replace with the desired emailId
+                    userId: user, // Replace with the desired userId
+                });
+            } catch (error) {
+                console.error("Error calling triggerWorkflowAndRedirect:", error);
+            }
+        } else {
+            console.error(
+                "ThriveStack instance is not available. Ensure it is initialized in the parent page."
+            );
+        };
+    }
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
