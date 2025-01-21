@@ -52,7 +52,6 @@ const Teams = () => {
 
     const handleSelectChange = (event) => setFormData(prev => ({ ...prev, [event.target.name]: event.target.value }));
     console.log(formData)
-    console.log(filterChannelsByTeams(channels, formData?.team))
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center min-h-screen bg-gray-100 gap-5">
