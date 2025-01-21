@@ -36,7 +36,7 @@ const Teams = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch(baseURL + '/user/teams/updateChannels?username=username', {
+            const response = await fetch(baseURL + '/user/teams/updateData?username=username', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ channelId: formData.channel, teamId: formData.team }),
