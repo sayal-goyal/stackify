@@ -1,14 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Select from 'react-select'
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 const Teams = () => {
-    const TeamsRef = useRef();
-    const ChannelsRef = useRef();
     const navigate = useNavigate();
     const [teams, setTeams] = useState([]);
     const [channels, setChannels] = useState({});
+    const [formData, setFormData] = useState({});
 
     useEffect(() => {
         const fetchList = async () => {
@@ -36,14 +34,12 @@ const Teams = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const selectedOptions = TeamsRef.current?.getValue() || [];
-        const selectedChannelIds = selectedOptions.map(option => option.value);
 
         try {
             const response = await fetch(baseURL + '/user/teams/updateChannels?username=username', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ channelIds: selectedChannelIds }),
+                body: JSON.stringify({ channelId: formData.channel, teamId: formData.team }),
             });
 
             const data = await response.json();
@@ -64,16 +60,30 @@ const Teams = () => {
         return filteredChannels;
     }
 
+    const handleSelectChange = (event) => setFormData(prev => ({ ...prev, [event.target.name]: event.target.value }));
+
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center min-h-screen bg-gray-100 gap-5">
             <div className='flex flex-col gap-3'>
-                <h2 className='text-slate-700'>Select Channels</h2>
-                <Select ref={TeamsRef} options={teams?.map(({ id, name }) => ({ label: name, value: id }))} isMulti />
-                <Select ref={ChannelsRef} options={(filterChannelsByTeams(channels, TeamsRef.current?.getValue()))?.map(({ id, name }) => ({ label: name, value: id }))} isMulti isDisabled={!TeamsRef.current?.getValue() || TeamsRef.current?.getValue()?.length === 0} />
+                <h2 className='text-slate-700'>Select Team and Channel</h2>
+                <select id="team" name='team' value={formData?.team} onChange={handleSelectChange} aria-placeholder='Select Team'>
+                    {teams.map((option, index) => (
+                        <option key={index} value={option.id}>
+                            {option.name}
+                        </option>
+                    ))}
+                </select>
+                <select id="channel" name='channel' value={formData?.channel} onChange={handleSelectChange} disabled={!formData?.team} aria-placeholder='Select Channel'>
+                    {filterChannelsByTeams(channels, formData?.team).map((option, index) => (
+                        <option key={index} value={option.id}>
+                            {option.name}
+                        </option>
+                    ))}
+                </select>
 
                 <button type="submit" className="px-8 py-2 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-lg shadow-lg hover:brightness-105 w-96 mt-3">
-                    Submit Channels
+                    Submit
                 </button>
             </div>
         </form>
