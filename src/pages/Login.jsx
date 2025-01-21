@@ -13,11 +13,11 @@ const Login = () => {
         if (window.thriveStackInstance) {
             // Call triggerWorkflowAndRedirect method for signup workflow
             try {
-                window.thriveStackInstance.triggerWorkflowAndRedirect({
-                    workflowId: 'lxLF5sQhMl',
-                    emailId: email, // Replace with the desired emailId
-                    userId: user, // Replace with the desired userId
-                });
+                window.thriveStackInstance.triggerWorkflowAndRedirect(
+                    'lxLF5sQhMl',
+                    email, // Replace with the desired emailId
+                    user // Replace with the desired userId
+                );
             } catch (error) {
                 console.error("Error calling triggerWorkflowAndRedirect:", error);
             }
