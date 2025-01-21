@@ -15,7 +15,7 @@ const Dashboard = () => {
 
   const handleTeamsSubmit = (e) => {
 
-    const redirectUri = `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=${teamsClientId}&response_type=code&scope=https%3A%2F%2Fgraph.microsoft.com%2F.default&response_mode=query&redirect_uri=${baseURL}/user/auth/teams`;
+    const redirectUri = `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=${teamsClientId}&response_type=code&scope=https%3A%2F%2Fgraph.microsoft.com%2FChannelMessage.Read.All%20https%3A%2F%2Fgraph.microsoft.com%2FChat.ReadWrite.All%20https%3A%2F%2Fgraph.microsoft.com%2FChatMember.ReadWrite.All%20https%3A%2F%2Fgraph.microsoft.com%2FGroup.Read.All%20https%3A%2F%2Fgraph.microsoft.com%2FGroup.ReadWrite.All%20https%3A%2F%2Fgraph.microsoft.com%2FTeam.ReadBasic.All%20https%3A%2F%2Fgraph.microsoft.com%2FUser.Read.All%20https%3A%2F%2Fgraph.microsoft.com%2FUser.ReadBasic.All%20https%3A%2F%2Fgraph.microsoft.com%2FUser.ReadWrite.All%20offline_access%20openid%20profile&response_mode=query&redirect_uri=${baseURL}/user/auth/teams`;
     window.location.href = redirectUri;
   };
 
