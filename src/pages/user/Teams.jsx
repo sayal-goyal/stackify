@@ -57,7 +57,7 @@ const Teams = () => {
     function filterChannelsByTeams(allChannels, selectedTeams) {
         const filteredChannels = [];
 
-        selectedTeams.forEach((teamID) => {
+        selectedTeams?.forEach((teamID) => {
             if (allChannels[teamID]) filteredChannels.push(...allChannels[teamID]);
         });
 
