@@ -50,16 +50,6 @@ const Teams = () => {
         }
     };
 
-    function filterChannelsByTeams(allChannels, selectedTeams) {
-        const filteredChannels = [];
-
-        selectedTeams?.forEach((teamID) => {
-            if (allChannels[teamID]) filteredChannels.push(...allChannels[teamID]);
-        });
-
-        return filteredChannels;
-    }
-
     const handleSelectChange = (event) => setFormData(prev => ({ ...prev, [event.target.name]: event.target.value }));
     console.log(formData)
     console.log(filterChannelsByTeams(channels, formData?.team))
@@ -76,7 +66,7 @@ const Teams = () => {
                     ))}
                 </select>
                 <select id="channel" name='channel' value={formData?.channel} onChange={handleSelectChange} aria-placeholder='Select Channel' className='h-11 bg-white rounded-md p-1 border-blue-100'>
-                    {filterChannelsByTeams(channels, formData?.team).map((option, index) => (
+                    {(channels[formData?.team] || []).map((option, index) => (
                         <option key={index} value={option.id}>
                             {option.name}
                         </option>
