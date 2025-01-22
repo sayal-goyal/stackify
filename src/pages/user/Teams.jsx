@@ -52,6 +52,7 @@ const Teams = () => {
 
     const handleSelectChange = (event) => setFormData(prev => ({ ...prev, [event.target.name]: event.target.value }));
     console.log(formData)
+    console.log(channels[formData?.team] ?? [])
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center min-h-screen bg-gray-100 gap-5">
@@ -65,7 +66,7 @@ const Teams = () => {
                     ))}
                 </select>
                 <select id="channel" name='channel' value={formData?.channel} onChange={handleSelectChange} aria-placeholder='Select Channel' className='h-11 bg-white rounded-md p-1 border-blue-100'>
-                    {(channels[formData?.team] || []).map((option, index) => (
+                    {(channels[formData?.team] ?? []).map((option, index) => (
                         <option key={index} value={option.id}>
                             {option.name}
                         </option>
