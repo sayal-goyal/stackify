@@ -9,7 +9,7 @@ const Dashboard = () => {
 
   const handleSlackSubmit = (e) => {
 
-    const redirectUri = `https://slack.com/oauth/v2/authorize?client_id=${slackClientId}&scope=channels:manage,channels:read,channels:write.invites,chat:write,groups:read,groups:write,groups:write.invites,im:read,incoming-webhook,users:read,channels:join&redirect_uri=${baseURL}/user/auth/slack`;
+    const redirectUri = `https://slack.com/oauth/v2/authorize?client_id=${slackClientId}&scope=channels:manage,channels:read,channels:write.invites,chat:write,groups:read,groups:write,groups:write.invites,im:read,incoming-webhook,users:read,channels:join&user_scope=groups:read,groups:write,groups:write.invites&redirect_uri=${baseURL}/user/auth/slack`;
     window.location.href = redirectUri;
   };
 
