@@ -8,27 +8,27 @@ const SlackAuth = () => {
   const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
 
-  useEffect(() => {
-    const fetchToken = async () => {
-      try {
-        const response = await fetch(baseURL + '/user/auth/slack', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ username: 'username', code: queryParams.get('code') })
-        });
+  // useEffect(() => {
+  //   const fetchToken = async () => {
+  //     try {
+  //       const response = await fetch(baseURL + '/user/auth/slack', {
+  //         method: 'POST',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //         body: JSON.stringify({ username: 'username', code: queryParams.get('code') })
+  //       });
 
-        const data = await response.json();
-        if (response.ok) navigate('/user/slack');
-        else console.error('Error response:', data);
-      } catch (error) {
-        console.error('Fetch error:', error);
-      }
-    };
+  //       const data = await response.json();
+  //       if (response.ok) navigate('/user/slack');
+  //       else console.error('Error response:', data);
+  //     } catch (error) {
+  //       console.error('Fetch error:', error);
+  //     }
+  //   };
 
-    fetchToken();
-  }, [])
+  //   fetchToken();
+  // }, [])
 
   return (
     <div className='flex min-h-screen justify-center items-center text-center text-2xl text-slate-500'>
