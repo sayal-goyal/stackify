@@ -16,7 +16,7 @@ const TeamsAuth = () => {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ username: 'username', code: queryParams.get('code') })
+                    body: JSON.stringify({ username: queryParams.get('state'), code: queryParams.get('code') })
                 });
 
                 const data = await response.json();
