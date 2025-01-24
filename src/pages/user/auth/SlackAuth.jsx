@@ -20,10 +20,7 @@ const SlackAuth = () => {
         });
 
         const data = await response.json();
-        if (response.ok) {
-          sessionStorage.setItem('username', queryParams.get('state'));
-          navigate('/dashboard')
-        }
+        if (response.ok) navigate('/dashboard')
         else console.error('Error response:', data);
       } catch (error) {
         console.error('Fetch error:', error);

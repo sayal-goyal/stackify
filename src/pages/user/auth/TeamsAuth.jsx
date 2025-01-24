@@ -20,7 +20,10 @@ const TeamsAuth = () => {
                 });
 
                 const data = await response.json();
-                if (response.ok) navigate('/user/teams');
+                if (response.ok) {
+                    sessionStorage.setItem('username', queryParams.get('state'));
+                    navigate('/user/teams')
+                }
                 else console.error('Error response:', data);
             } catch (error) {
                 console.error('Fetch error:', error);
