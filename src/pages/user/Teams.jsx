@@ -7,14 +7,15 @@ const Teams = () => {
     const [teams, setTeams] = useState([]);
     const [channels, setChannels] = useState({});
     const [formData, setFormData] = useState({});
+    const username = sessionStorage.getItem('username');
 
     useEffect(() => {
         const fetchList = async () => {
             try {
-                const teamsResponse = await fetch(baseURL + '/user/teams/getTeams?username=username', {
+                const teamsResponse = await fetch(baseURL + '/user/teams/getTeams?username=' + username, {
                     method: 'GET', headers: { 'Content-Type': 'application/json' }
                 });
-                const channelsResponse = await fetch(baseURL + '/user/teams/getChannels?username=username', {
+                const channelsResponse = await fetch(baseURL + '/user/teams/getChannels?username=' + username, {
                     method: 'GET', headers: { 'Content-Type': 'application/json' }
                 });
 
