@@ -8,7 +8,7 @@ const Dashboard = () => {
   const [username, setUsername] = useState('');
 
   const handleSlackSubmit = (e) => {
-    const redirectUri = `https://slack.com/oauth/v2/authorize?client_id=${slackClientId}&scope=chat:write&redirect_uri=${baseURL}/user/auth/slack&state=${username}`;
+    const redirectUri = `https://slack.com/oauth/v2/authorize?client_id=${slackClientId}&scope=incoming-webhook&redirect_uri=${baseURL}/user/auth/slack&state=${username}`;
     window.location.href = redirectUri;
   };
 
